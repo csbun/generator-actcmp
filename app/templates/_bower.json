@@ -1,0 +1,20 @@
+{
+  "name": "user",
+  "version": "0.0.1",
+  "authors": [
+    "Hans Chan <chenhc@ucweb.com>"
+  ],
+  "description": "user component for UC Activity",
+  "main": "src/user.js",
+  "license": "MIT",
+  "homepage": "http://git.ucweb.local/pf/cmp-user/tree/master",
+  "dependencies": {
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
