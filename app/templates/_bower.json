@@ -1,13 +1,13 @@
 {
-  "name": "user",
+  "name": "<%= _.slugify(cmpName) %>",
   "version": "0.0.1",
   "authors": [
     "Hans Chan <chenhc@ucweb.com>"
   ],
-  "description": "user component for UC Activity",
-  "main": "src/user.js",
+  "description": "<%= _.slugify(cmpName) %> component for UC Activity",
+  "main": "src/<%= _.slugify(cmpName) %>.js",
   "license": "MIT",
-  "homepage": "http://git.ucweb.local/pf/cmp-user/tree/master",
+  "homepage": "http://git.ucweb.local/pf/cmp-<%= _.slugify(cmpName) %>/tree/master",
   "dependencies": {
   },
   "ignore": [

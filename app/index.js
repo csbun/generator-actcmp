@@ -46,7 +46,10 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
     this.directory('server', 'server');
 
     this.directory('example', 'example');
-    this.template('example/index.html', 'example/index.html');
+    this.mkdir('example/js/cmp');
+    this.template('example-tpl/index.html', 'example/index.html');
+    this.template('example-tpl/bootstrap.js', 'example/js/bootstrap.js');
+    this.template('example-tpl/cmp.js', 'example/js/cmp/' + this.cmpName + '.js');
 
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
