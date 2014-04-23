@@ -1,8 +1,20 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    'use strict';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         
+        // 将bower依赖的文件复制到项目中
+        'bower-install-simple': {
+            options: {}
+        },
+        bower: {
+            cmp: {
+                dest: 'example/js/cmp/'
+            }
+        },
+        clean: ['bower_components'],
+
         jshint: {
             all: [
                 'example/**/*.js',
@@ -12,7 +24,7 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc',
                 ignores: [
                     'example/js/seajs/*.js',
-                    'example/js/vue/*.js',
+                    'example/js/cmp/vue.js',
                     'example/js/core/*.js'
                 ],
             }
@@ -30,8 +42,8 @@ module.exports = function(grunt) {
         // 在 example 中改，自动复制到 src 中去
         copy: {
             main: {
-                src: 'example/js/cmp/*.js',
-                dest: 'src/cmp.js'
+                src: 'example/js/cmp/<%= _.slugify(cmpName) %>.js',
+                dest: 'src/<%= _.slugify(cmpName) %>.js'
             }
         },
         watch: {
@@ -54,17 +66,21 @@ module.exports = function(grunt) {
             },
             copy: {
                 files: [
-                    'example/js/cmp/lucky.js'
+                    'example/js/cmp/<%= _.slugify(cmpName) %>.js'
                 ],
                 tasks: ['copy']
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-bower-install-simple');
+    grunt.loadNpmTasks('grunt-bower');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-express-server');
 
-    grunt.registerTask('default', ['jshint', 'copy', 'express:dev', 'watch']);
+    grunt.registerTask('install', ['bower-install-simple', 'bower', 'clean']);
+    grunt.registerTask('default', ['copy', 'jshint', 'express:dev', 'watch']);
 };

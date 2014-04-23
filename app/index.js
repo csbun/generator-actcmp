@@ -1,5 +1,5 @@
 'use strict';
-var util = require('util');
+// var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
@@ -31,7 +31,7 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
     }];
 
     this.prompt(prompts, function (props) {
-      this.cmpName = (props.cmpName || '').replace(/\s/g, '');
+      this.cmpName = (props.cmpName || '').replace(/^cmp\-/, '').replace(/\s/g, '');
       if (this.cmpName) {
         done();
       } else {
@@ -54,9 +54,9 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_README.md', 'README.md');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
+    this.template('Gruntfile.js', 'Gruntfile.js');
     this.copy('jshintrc', '.jshintrc');
-  },
+  }
 
 });
 

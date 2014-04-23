@@ -40,21 +40,28 @@ var vm = new Vue({
 ---
 
 ### cmp-<%= _.slugify(cmpName) %>-sth
+
 与 `v-component="cmp-<%= _.slugify(cmpName) %>"` 写在同一个标签，表示 Something
 
 数据
 ---
+
 ### sth
+
 type，解释
 
 
 方法
 ---
+
 ### sth
+
 解释
 
 
 事件
 ---
+
 ### cmp-<%= _.slugify(cmpName) %>-sth
+
 解释，传递N个参数：`arg` 解释

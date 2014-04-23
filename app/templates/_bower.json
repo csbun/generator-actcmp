@@ -9,6 +9,7 @@
   "license": "MIT",
   "homepage": "http://git.ucweb.local/pf/cmp-<%= _.slugify(cmpName) %>/tree/master",
   "dependencies": {
+    "vue": ">=0.10.3"
   },
   "ignore": [
     "**/.*",
