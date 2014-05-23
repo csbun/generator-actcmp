@@ -4,6 +4,11 @@ var express = require('express'),
     app = express(),
     data = require('./data');
 
+// 自动注入 livereload
+app.use(require('connect-livereload')({
+    port: 35729
+}));
+
 // 根目录
 var basePath = process.cwd() + '/example';
 app.use(express.static(basePath));
