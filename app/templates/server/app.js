@@ -13,11 +13,6 @@ app.use(require('connect-livereload')({
 var basePath = process.cwd() + '/example';
 app.use(express.static(basePath));
 
-// 静态文件
-['/js', '/css', '/images'].forEach(function (path) {
-    app.use(path, express.static(basePath + path));
-});
-
 app.get('/', function (req, res) {
     res.sendfile('./index.html');
 });

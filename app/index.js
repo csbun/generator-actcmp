@@ -3,6 +3,7 @@
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var changeCase = require('change-case');
 
 
 var ActcmpGenerator = yeoman.generators.Base.extend({
@@ -17,7 +18,9 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
   },
 
   askFor: function () {
-    var done = this.async();
+    var done = this.async(),
+        destBasePath = (this.src._destBase || '').split(/[\/\\: ]/),
+        defaultCmpName = (destBasePath[destBasePath.length - 1] || 'my-cmp').replace(/^cmp\-/, '');
 
     // have Yeoman greet the user
     console.log(this.yeoman);
@@ -27,12 +30,17 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
 
     var prompts = [{
       name: 'cmpName',
-      message: 'Would you like to call this component?'
+      message: 'Would you like to call this component?',
+      default: defaultCmpName
     }];
 
     this.prompt(prompts, function (props) {
-      this.cmpName = (props.cmpName || '').replace(/^cmp\-/, '').replace(/\s/g, '');
-      if (this.cmpName) {
+      var cmpName = (props.cmpName || '').replace(/^cmp\-/, '').replace(/\s/g, '');
+      if (cmpName) {
+        // 组件名称，param 命名方式
+        this.cmpName = changeCase.paramCase(cmpName);
+        // 组件构造函数名，pascal 命名方式，在 example-tpl/cmp.js 中使用
+        this.cmpConstructName = changeCase.pascalCase(cmpName);
         done();
       } else {
         console.log(chalk.magenta('Oops!! the Component Name is required!'));

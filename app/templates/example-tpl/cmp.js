@@ -1,14 +1,17 @@
 define(function (require, exports, module) {
     'use strict';
 
-    var Cmp = Vue.extend({
-            methods: {},
+    var NAME = 'cmp-<%= cmpName %>',
+        <%= cmpConstructName %> = Vue.extend({
+            methods: {
+                // methods
+            },
             created: function () {
-                this.$cmp = {};
+                this.$cmpName = NAME;
             }
         });
 
-    Vue.component('cmp-<%= _.slugify(cmpName) %>', Cmp);
-    module.exports = Cmp;
+    Vue.component(NAME, <%= cmpConstructName %>);
+    module.exports = <%= cmpConstructName %>;
     
 });

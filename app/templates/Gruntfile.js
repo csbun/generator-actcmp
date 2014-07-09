@@ -72,6 +72,7 @@ module.exports = function (grunt) {
             }
         }
     });
+    // TODO: try grunt-conventional-changelog
 
     grunt.loadNpmTasks('grunt-bower-install-simple');
     grunt.loadNpmTasks('grunt-bower');
