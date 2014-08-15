@@ -35,7 +35,8 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
     }];
 
     this.prompt(prompts, function (props) {
-      var cmpName = (props.cmpName || '').replace(/^cmp\-/, '').replace(/\s/g, '');
+      var cmpName = props.cmpName.toLowerCase() === 'y' ? defaultCmpName : props.cmpName;
+      cmpName = cmpName.replace(/^cmp\-/, '').replace(/\s/g, '');
       if (cmpName) {
         // 组件名称，param 命名方式
         this.cmpName = changeCase.paramCase(cmpName);
@@ -51,7 +52,8 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
   app: function () {
     this.mkdir('src');
 
-    this.directory('server', 'server');
+    this.mkdir('server');
+    this.template('server/_app.js', 'server/app.js');
 
     this.directory('example', 'example');
     this.mkdir('example/js/cmp');
@@ -62,7 +64,7 @@ var ActcmpGenerator = yeoman.generators.Base.extend({
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_README.md', 'README.md');
-    this.template('Gruntfile.js', 'Gruntfile.js');
+    this.template('_Gruntfile.js', 'Gruntfile.js');
     this.copy('jshintrc', '.jshintrc');
   }
 

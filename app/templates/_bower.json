@@ -2,14 +2,13 @@
   "name": "<%= _.slugify(cmpName) %>",
   "version": "0.0.1",
   "authors": [
-    "Hans Chan <chenhc@ucweb.com>"
+    "User <user@example.com>"
   ],
   "description": "<%= _.slugify(cmpName) %> component for UC Activity",
   "main": "src/<%= _.slugify(cmpName) %>.js",
   "license": "MIT",
   "homepage": "http://git.ucweb.local/pf/cmp-<%= _.slugify(cmpName) %>/tree/master",
   "dependencies": {
-    "vue": ">=0.10.3"
   },
   "ignore": [
     "**/.*",
