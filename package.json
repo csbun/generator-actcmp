@@ -4,11 +4,11 @@
   "description": "UC Activity Component Generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "icsbun/generator-actcmp",
+  "repository": "csbun/generator-actcmp",
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/icsbun"
+    "name": "Hans Chan",
+    "email": "icsbun@gmail.com",
+    "url": "https://github.com/csbun"
   },
   "engines": {
     "node": ">=0.10.0"

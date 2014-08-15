@@ -7,7 +7,7 @@ var express = require('express'),
 var livereloadPort = 35729,
     weinreId = '<%= cmpName %>',
     genScript = function (src) {
-        return src ? '<script src="' + src +'"><\\/script>' : '';
+        return src ? '<script src="' + src + '"><\\/script>' : '';
     },
     // snippet = '';
     snippet = '\n<script>//<![CDATA[\ndocument.write(\'' +
@@ -28,12 +28,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/read', function (req, res) {
-    setTimeout(function() {
+    setTimeout(function () {
         res.send({});
     }, 1000);
 });
 
 var port = process.env.PORT || 3000;
-app.listen(port, function() {
+app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });
