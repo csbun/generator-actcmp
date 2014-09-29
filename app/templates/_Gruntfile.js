@@ -6,7 +6,12 @@ module.exports = function (grunt) {
         
         // 将bower依赖的文件复制到项目中
         'bower-install-simple': {
-            options: {}
+            options: {},
+            prod: {
+                options: {
+                    production: true
+                }
+            }
         },
         bower: {
             cmp: {

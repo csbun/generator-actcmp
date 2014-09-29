@@ -1,6 +1,6 @@
 {
   "name": "generator-actcmp",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "UC Activity Component Generator",
   "license": "MIT",
   "main": "app/index.js",

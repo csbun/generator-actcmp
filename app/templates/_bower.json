@@ -7,7 +7,7 @@
   "description": "<%= _.slugify(cmpName) %> component for UC Activity",
   "main": "src/<%= _.slugify(cmpName) %>.js",
   "license": "MIT",
-  "homepage": "http://git.ucweb.local/pf/cmp-<%= _.slugify(cmpName) %>/tree/master",
+  "homepage": "http://git.ucweb.local/pffe/<%= _.slugify(cmpName) %>/tree/master",
   "dependencies": {
   },
   "ignore": [
