@@ -1,18 +1,17 @@
 'use strict';
 
-var express = require('express'),
+var path = require('path'),
+    express = require('express'),
+    browserify = require('browserify'),
     app = express();
 
 // 自动注入 livereload 和 weinre
 var livereloadPort = 35729,
-    weinreId = '<%= cmpName %>',
     genScript = function (src) {
         return src ? '<script src="' + src + '"><\\/script>' : '';
     },
-    // snippet = '';
     snippet = '\n<script>//<![CDATA[\ndocument.write(\'' +
         genScript('//\' + (location.hostname || \'localhost\') + \':' + livereloadPort + '/livereload.js') +
-        (weinreId ? genScript('//weinre.uae.ucweb.local/target/target-script-min.js#' + weinreId) : '') +
         '\')\n//]]></script>\n';
 
 app.use(require('connect-inject')({
@@ -26,12 +25,25 @@ app.use(express.static(basePath));
 app.get('/', function (req, res) {
     res.sendfile('./index.html');
 });
-
-app.get('/api/read', function (req, res) {
-    setTimeout(function () {
-        res.send({});
-    }, 1000);
+app.get('/bundle.js', function (req, res) {
+    res.set('Content-Type', 'application/javascript');
+    browserify(path.join(basePath, 'bootstrap.js'), {
+        debug: true
+    }).bundle(function (err, buff) {
+        res.send(err ? 'console.log(' + JSON.stringify(err.message) + ');' : buff.toString());
+    });
 });
+
+function logHandler (req, res) {
+    console.log(req.query);
+    res.send({});
+}
+
+app.get('/log', logHandler);
+app.get('/logVisit', logHandler);
+app.get('/logClick', logHandler);
+app.get('/logEvent', logHandler);
+app.get('/logSystem', logHandler);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

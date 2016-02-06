@@ -1,19 +1,20 @@
 {
-  "name": "<%= _.slugify(cmpName) %>",
+  "name": "<%= cmpName %>",
   "version": "0.0.1",
-  "authors": [
-    "User <user@example.com>"
-  ],
-  "description": "<%= _.slugify(cmpName) %> component for UC Activity",
-  "main": "src/<%= _.slugify(cmpName) %>.js",
+  "author": {
+    "name": "<%= gitName %>",
+    "email": "<%= gitEmail %>"
+  },
+  "description": "Description for <%= cmpName %>",
+  "main": "index.js",
   "license": "MIT",
-  "homepage": "http://git.ucweb.local/pffe/<%= _.slugify(cmpName) %>/tree/master",
   "dependencies": {
   },
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "example",
     "test",
     "tests"
   ]
