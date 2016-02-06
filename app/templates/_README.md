@@ -13,7 +13,7 @@ f i <%= cmpName %>
 
 ```javascript
 const <%= cmpName %> = require('<%= cmpName %>');
-<%= cmpName %>.someMethod();
+<%= cmpCamelName %>.someMethod();
 ```
 
 方法
