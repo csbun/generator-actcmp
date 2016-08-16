@@ -3,6 +3,7 @@
 var path = require('path'),
     express = require('express'),
     browserify = require('browserify'),
+    debowerify = require('debowerify'),
     app = express();
 
 // 自动注入 livereload 和 weinre
@@ -27,9 +28,12 @@ app.get('/', function (req, res) {
 });
 app.get('/bundle.js', function (req, res) {
     res.set('Content-Type', 'application/javascript');
-    browserify(path.join(basePath, 'bootstrap.js'), {
-        debug: true
-    }).bundle(function (err, buff) {
+    browserify(
+        path.join(basePath, 'bootstrap.js'),
+        { debug: true }
+    )
+    .transform(debowerify)
+    .bundle(function (err, buff) {
         res.send(err ? 'console.log(' + JSON.stringify(err.message) + ');' : buff.toString());
     });
 });
